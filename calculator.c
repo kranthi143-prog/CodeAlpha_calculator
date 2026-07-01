@@ -1,80 +1,110 @@
 /*
- * ============================================
- *  Basic Calculator Program in C
- *  Operations: Addition, Subtraction,
- *              Multiplication, Division
- *  Selection : switch-case
- * ============================================
- */
+=========================================
+        SIMPLE CALCULATOR
+        CodeAlpha Internship - Task 1
+
+Author : nidiganti kranthi goud
+Language : C
+=========================================
+*/
 
 #include <stdio.h>
 
-int main() {
-    double num1, num2, result;
+// Function Declarations
+float addition(float a, float b);
+float subtraction(float a, float b);
+float multiplication(float a, float b);
+float division(float a, float b);
+
+int main()
+{
     int choice;
+    float num1, num2, result;
 
-    /* ── Display Menu ── */
-    printf("\n=============================\n");
-    printf("     BASIC CALCULATOR MENU   \n");
-    printf("=============================\n");
-    printf("  1. Addition       (+)\n");
-    printf("  2. Subtraction    (-)\n");
-    printf("  3. Multiplication (*)\n");
-    printf("  4. Division       (/)\n");
-    printf("  5. Exit\n");
-    printf("=============================\n");
-    printf("Enter your choice (1-5): ");
-    scanf("%d", &choice);
+    do
+    {
+        printf("\n=========================================\n");
+        printf("         SIMPLE CALCULATOR\n");
+        printf("=========================================\n");
+        printf("1. Addition\n");
+        printf("2. Subtraction\n");
+        printf("3. Multiplication\n");
+        printf("4. Division\n");
+        printf("5. Exit\n");
+        printf("=========================================\n");
 
-    /* ── Exit early if user chooses 5 ── */
-    if (choice == 5) {
-        printf("Exiting calculator. Goodbye!\n");
-        return 0;
-    }
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    /* ── Validate menu choice ── */
-    if (choice < 1 || choice > 4) {
-        printf("Invalid choice! Please enter a number between 1 and 5.\n");
-        return 1;
-    }
+        if(choice >= 1 && choice <= 4)
+        {
+            printf("Enter first number : ");
+            scanf("%f", &num1);
 
-    /* ── Read operands ── */
-    printf("Enter first number  : ");
-    scanf("%lf", &num1);
-    printf("Enter second number : ");
-    scanf("%lf", &num2);
+            printf("Enter second number: ");
+            scanf("%f", &num2);
+        }
 
-    /* ── Perform selected operation ── */
-    switch (choice) {
+        switch(choice)
+        {
+            case 1:
+                result = addition(num1, num2);
+                printf("\nResult = %.2f\n", result);
+                break;
 
-        case 1:  /* Addition */
-            result = num1 + num2;
-            printf("\nResult: %.2lf + %.2lf = %.2lf\n", num1, num2, result);
-            break;
+            case 2:
+                result = subtraction(num1, num2);
+                printf("\nResult = %.2f\n", result);
+                break;
 
-        case 2:  /* Subtraction */
-            result = num1 - num2;
-            printf("\nResult: %.2lf - %.2lf = %.2lf\n", num1, num2, result);
-            break;
+            case 3:
+                result = multiplication(num1, num2);
+                printf("\nResult = %.2f\n", result);
+                break;
 
-        case 3:  /* Multiplication */
-            result = num1 * num2;
-            printf("\nResult: %.2lf * %.2lf = %.2lf\n", num1, num2, result);
-            break;
+            case 4:
+                if(num2 == 0)
+                {
+                    printf("\nError! Division by zero is not possible.\n");
+                }
+                else
+                {
+                    result = division(num1, num2);
+                    printf("\nResult = %.2f\n", result);
+                }
+                break;
 
-        case 4:  /* Division */
-            if (num2 == 0) {
-                printf("\nError: Division by zero is not allowed!\n");
-                return 1;
-            }
-            result = num1 / num2;
-            printf("\nResult: %.2lf / %.2lf = %.2lf\n", num1, num2, result);
-            break;
+            case 5:
+                printf("\nThank you for using the Calculator!\n");
+                break;
 
-        default:
-            printf("\nUnexpected error. Exiting.\n");
-            return 1;
-    }
+            default:
+                printf("\nInvalid Choice! Please try again.\n");
+        }
+
+    } while(choice != 5);
 
     return 0;
+}
+
+// Function Definitions
+
+float addition(float a, float b)
+{
+    return a + b;
+}
+
+float subtraction(float a, float b)
+{
+    return a - b;
+}
+
+float multiplication(float a, float b)
+{
+    return a * b;
+}
+
+float division(float a, float b)
+{
+    return a / b;
 }
